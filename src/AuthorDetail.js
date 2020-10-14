@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 // Components
 import BookTable from "./BookTable";
+import AddBookModal from "./AddBookModal"
 import Loading from "./Loading";
 
 import { connect } from "react-redux";
@@ -30,6 +31,7 @@ const AuthorDetail = (props) => {
           />
         </div>
         <BookTable books={author.books} />
+        <AddBookModal author={author} />
       </div>
     );
   }

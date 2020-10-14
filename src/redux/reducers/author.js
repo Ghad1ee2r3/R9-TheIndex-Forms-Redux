@@ -26,6 +26,11 @@ const reducer = (state = initialState, action) => {
 
     case ADD_BOOK:
     //UPDATE THE STATE ACCORDINGLY
+      state.author={...state.author, books:[...state.author.books, action.payload]}
+      return{
+        ...state,
+        loading:false,
+      };
 
     default:
       return state;

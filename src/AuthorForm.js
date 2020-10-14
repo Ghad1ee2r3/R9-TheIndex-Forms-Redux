@@ -1,3 +1,4 @@
+import { event } from "jquery";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
@@ -11,17 +12,27 @@ const AuthorForm = (props) => {
     books: [],
   });
 
+
+  const handleChange = event =>{
+    setAuthor({...author,[event.target.name]:event.target.value});
+  }
+
+
   useEffect(() => {
     return () => {
       if (props.errors.length) props.resetErrors();
     };
   }, []); // Component Will unmount
 
+
+
   const submitAuthor = (event) => {
     event.preventDefault();
     props.postAuthor(author, props.closeModal);
   };
 
+
+  
   const errors = props.errors;
 
   return (
@@ -38,19 +49,19 @@ const AuthorForm = (props) => {
           <div className="input-group-prepend">
             <span className="input-group-text">First Name</span>
           </div>
-          <input type="text" className="form-control" name="first_name" />
+          <input type="text" className="form-control" name="first_name"  value={author.first_name} onChange={handleChange}/>
         </div>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text">Last Name</span>
           </div>
-          <input type="text" className="form-control" name="last_name" />
+          <input type="text" className="form-control" name="last_name" value={author.last_name} onChange={handleChange} />
         </div>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text">Image URL</span>
           </div>
-          <input type="text" className="form-control" name="imageUrl" />
+          <input type="text" className="form-control" name="imageUrl"  value={author.imageUrl} onChange={handleChange}/>
         </div>
         <input type="submit" />
       </form>
